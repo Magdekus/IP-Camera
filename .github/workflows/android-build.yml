@@ -23,7 +23,8 @@ jobs:
           java-version: '17' # Самая стабильная версия для большинства проектов
           distribution: 'temurin'
           cache: gradle
-
+      - name: Grant execute permission for all gradlew files
+        run: find . -name "gradlew" -exec chmod +x {} +
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
 
