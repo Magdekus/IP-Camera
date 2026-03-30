@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug - List Files
+        run: ls -R
+        
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -23,16 +26,21 @@ jobs:
           java-version: '17' # Самая стабильная версия для большинства проектов
           distribution: 'temurin'
           cache: gradle
+          
       - name: Grant execute permission for all gradlew files
         run: find . -name "gradlew" -exec chmod +x {} +
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
+        
       - name: Build with Gradle
         # Укажи полный путь до файла
-        run: ./Android/gradlew assembleDebug
+        run: ./gradlew assembleDebug
+        working-directory: ./VideoServer
+        
       - name: Build with Gradle1
         # Добавил --info, чтобы увидеть РЕАЛЬНУЮ причину падения
-        run: ./VideoServer/gradlew assembleDebug
+        run: ./gradlew assembleDebug
+        working-directory: ./Android
 
       - name: Upload APK
         if: success() # Загружаем, только если билд прошел
