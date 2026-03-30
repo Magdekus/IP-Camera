@@ -31,14 +31,8 @@ jobs:
         run: find . -name "gradlew" -exec chmod +x {} +
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
-        
-      - name: Build with Gradle
-        # Укажи полный путь до файла
-        run: ./gradlew assembleDebug
-        working-directory: ./VideoServer
-        
+              
       - name: Build with Gradle1
-        # Добавил --info, чтобы увидеть РЕАЛЬНУЮ причину падения
         run: ./gradlew assembleDebug
         working-directory: ./Android
 
