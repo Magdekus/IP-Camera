@@ -33,8 +33,8 @@ jobs:
         run: yes | sdkmanager --licenses || true
               
       - name: Build with Gradle1
-        run: ./gradlew assembleDebug
-        working-directory: ./Android
+        run: Android/gradlew assembleDebug
+        
 
       - name: Upload APK
         if: success() # Загружаем, только если билд прошел
