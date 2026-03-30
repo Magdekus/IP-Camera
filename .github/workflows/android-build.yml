@@ -12,18 +12,25 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Debug - List Files
-        run: ls -R
-        
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # Выкачиваем всю историю (на случай проблем с ветками)
+          clean: false          # Не очищаем директорию перед билдом
+
+      - name: Verify Files (Check where we are)
+        # Эта команда покажет путь к текущей папке и всё её содержимое
+        run: |
+          pwd
+          ls -la
+          ls -R
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17' # Самая стабильная версия для большинства проектов
+          java-version: '17'
           distribution: 'temurin'
           cache: gradle
           
