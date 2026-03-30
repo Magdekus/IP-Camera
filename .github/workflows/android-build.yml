@@ -27,13 +27,12 @@ jobs:
         run: find . -name "gradlew" -exec chmod +x {} +
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Build with Gradle
+        # Укажи полный путь до файла
+        run: ./Android/gradlew assembleDebug
+      - name: Build with Gradle1
         # Добавил --info, чтобы увидеть РЕАЛЬНУЮ причину падения
-        run: ./gradlew assembleDebug --info --stacktrace
+        run: ./VideoServer/gradlew assembleDebug
 
       - name: Upload APK
         if: success() # Загружаем, только если билд прошел
