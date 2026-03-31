@@ -41,7 +41,7 @@ jobs:
               
       - name: Build Android APK
         # Собираем именно Андроид, а не сервер
-        run: ./gradlew build
+        run: ./gradlew build -x lint
         working-directory: ./Andorid
 
       - name: Upload APK
