@@ -39,12 +39,15 @@ jobs:
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
               
-      - name: Build with Gradle1
+      - name: Build Android APK
+        # Собираем именно Андроид, а не сервер
         run: ./gradlew build
-        working-directory: ./VideoServer
+        working-directory: ./Andorid
+
       - name: Upload APK
-        if: success() # Загружаем, только если билд прошел
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          # Указываем путь, учитывая твою опечатку в названии папки
+          path: Andorid/app/build/outputs/apk/debug/*.apk
