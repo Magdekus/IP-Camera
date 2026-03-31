@@ -40,7 +40,7 @@ jobs:
         run: yes | sdkmanager --licenses || true
               
       - name: Build with Gradle1
-        run: ./Andorid/gradlew assembleDebug
+        run: ./VideoServer/gradlew assembleDebug
         
 
       - name: Upload APK
