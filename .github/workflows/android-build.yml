@@ -40,9 +40,8 @@ jobs:
         run: yes | sdkmanager --licenses || true
               
       - name: Build with Gradle1
-        run: ./VideoServer/gradlew assembleDebug
-        
-
+        run: ./gradlew assembleDebug
+        working-directory: ./VideoServer
       - name: Upload APK
         if: success() # Загружаем, только если билд прошел
         uses: actions/upload-artifact@v4
